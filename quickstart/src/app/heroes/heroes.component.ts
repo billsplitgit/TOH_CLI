@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Hero} from './hero';
 
 @Component({
 
@@ -37,9 +37,3 @@ const HEROES: Hero[] = [
   { id: 19, name: 'Magma' },
   { id: 20, name: 'Tornado' }
 ];
-
-
-export class Hero{
-  id: number;
-  name: string;
-}
