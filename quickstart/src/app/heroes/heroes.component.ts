@@ -1,39 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import {Hero} from './hero';
+import { HeroService } from './hero.service';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
 
   selector: 'app-heroes',
   templateUrl: 'heroes.component.html',
-  styleUrls: ['heroes.component.css']
+  styleUrls: ['heroes.component.css'],
+  providers:[]
 })
 
 export class HeroesComponent implements OnInit {
 
   selectedHero: Hero; 
+  heroes : Hero[];
 
-  heroes = HEROES;
-  
-  constructor() { }
+  constructor(private _heroService: HeroService,
+  private _router: Router) { }
+
+  getHeroes() : void{
+    this._heroService.getHeroes().then(heroes => this.heroes = heroes);
+  }
 
   ngOnInit() {
+    this.getHeroes();
   }
 
   onSelect(hero: Hero): void{
     this.selectedHero = hero;
   }
 
+  gotoDetail(): void {
+    this._router.navigate(['/detail', this.selectedHero.id]);
+  }
 }
 
-const HEROES: Hero[] = [
-  { id: 11, name: 'Mr. Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
-];
+
+

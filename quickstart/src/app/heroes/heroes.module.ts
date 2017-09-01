@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import { HeroDetailComponent } from './hero-detail.component';
 import { HeroesComponent } from "./heroes.component";
+import { HeroService } from "./hero.service";
+
 
 @NgModule({
   imports: [
@@ -10,6 +12,8 @@ import { HeroesComponent } from "./heroes.component";
     FormsModule
   ],
   declarations: [HeroesComponent
-    ,HeroDetailComponent]
+    ,HeroDetailComponent],
+    
+  providers:[HeroService]
 })
 export class HeroesModule { }
