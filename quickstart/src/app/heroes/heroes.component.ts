@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Hero} from './hero';
 import { HeroService } from './hero.service';
+import {UserService} from './user.service';
 import { Router, RouterModule } from '@angular/router';
+import { Iusers } from "./mock-users";
 
 @Component({
 
@@ -15,12 +17,17 @@ export class HeroesComponent implements OnInit {
 
   selectedHero: Hero; 
   heroes : Hero[];
+  users : Iusers[];
 
   constructor(private _heroService: HeroService,
-  private _router: Router) { }
+  private _router: Router, private _userService :UserService) { }
 
   getHeroes() : void{
     this._heroService.getHeroes().then(heroes => this.heroes = heroes);
+  }
+
+  getUsers() : void{
+    this._userService.getUsers().then(usrs => this.users = usrs);
   }
 
   ngOnInit() {
